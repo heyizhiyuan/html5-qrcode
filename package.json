@@ -1,12 +1,12 @@
 {
-  "name": "html5-qrcode",
+  "name": "html5-qrcode-cv",
   "version": "2.3.8",
   "description": "A cross platform HTML5 QR Code & bar code scanner",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",
   "typings": "./esm/index.d.ts",
   "esnext": "./es2015/index.js",
-  "unpkg": "./html5-qrcode.min.js",
+  "unpkg": "./html5-qrcode-cv.min.js",
   "scripts": {
     "build-windows": "npm run build:es2015 && npm run build:esm && npm run build:esnext && npm run build:cjs && npm run build:umd_windows && npm run build:typing && npm run build:copy_windows",
     "test": "npm run-script test:build && npm run-script test:run",
@@ -28,14 +28,14 @@
     "build:umd_windows": ".\\scripts\\build-webpack.bat",
     "build:copy": "cp README.md dist && cp package.json dist && cp LICENSE dist && cp -R src dist/src",
     "build:copy_windows": "copy README.md dist && copy package.json dist && copy LICENSE dist",
-    "internal_release": "npm run build && cp dist/html5-qrcode.min.js minified/html5-qrcode.min.js",
-    "release": "npm run build && cp dist/html5-qrcode.min.js minified/html5-qrcode.min.js && cd dist && npm publish",
-    "release_windows": "npm run build && cp dist\\html5-qrcode.min.js minified\\html5-qrcode.min.js && cd dist && npm publish",
+    "internal_release": "npm run build && cp dist/html5-qrcode-cv-min.js minified/html5-qrcode-cv-min.js",
+    "release": "npm run build && cp dist/html5-qrcode-cv-min.js minified/html5-qrcode-cv-min.js && cd dist && npm publish",
+    "release_windows": "npm run build && cp dist\\html5-qrcode-cv-min.js minified\\html5-qrcode-cv-min.js && cd dist && npm publish",
     "doc_gen": "npx typedoc --excludePrivate src/index.ts"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mebjas/html5-qrcode.git"
+    "url": "git+https://github.com/heyizhiyuan/html5-qrcode.git"
   },
   "keywords": [
     "html5",
@@ -50,9 +50,9 @@
   "author": "minhazav@gmail.com",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/mebjas/html5-qrcode/issues"
+    "url": "https://github.com/heyizhiyuan/html5-qrcode/issues"
   },
-  "homepage": "https://github.com/mebjas/html5-qrcode#readme",
+  "homepage": "https://github.com/heyizhiyuan/html5-qrcode#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
@@ -89,5 +89,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "tests"
   }
 }

@@ -8,7 +8,7 @@ module.exports = {
     // output bundles (location)
     output: {
         path: path.resolve( __dirname, "dist" ),
-        filename: "html5-qrcode.min.js",
+        filename: "html5-qrcode-cv.min.js",
         library: "__Html5QrcodeLibrary__",
     },
     // file resolutions

@@ -14,7 +14,7 @@ If you are not using any loader, you can get the latest UMD javascript code in p
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript">
 ```
 
-> In case you installed the plugin using npm but still use javascript without any module loader, you can get the minified script in node_modules/html5-qrcode/html5-qrcode.min.js
+> In case you installed the plugin using npm but still use javascript without any module loader, you can get the minified script in node_modules/html5-qrcode/html5-qrcode-cv-min.js
 
 #### Using with module loaders
 Include the script with

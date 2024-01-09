@@ -8,7 +8,7 @@
 You can download this from [Github release page](https://github.com/mebjas/html5-qrcode/releases) or [npm](https://www.npmjs.com/package/html5-qrcode). And include this in `index.html`.
 
 ```html
-<script src="html5-qrcode.min.js"></script>
+<script src="html5-qrcode-cv-min.js"></script>
 ```
 
 ### And include the `html` placeholder
