@@ -8,6 +8,12 @@
  * http://www.denso-wave.com/qrcode/faqpatent-e.html
  */
 
+declare global {
+    interface Window {
+        cv: any
+    }
+}
+
 /**
  * Code formats supported by this library.
  */
@@ -113,6 +119,16 @@ export type QrDimensionFunction =
 export interface QrBounds extends QrDimensions {
     x: number;
     y: number;
+}
+
+/**
+ * 
+ */
+export type OpenCvConfig = {
+    /**
+     * Model file address
+     */
+    modelAddr: string
 }
 
 /** Format of detected code. */

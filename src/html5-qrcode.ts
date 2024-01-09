@@ -26,7 +26,8 @@ import {
     Html5QrcodeResult,
     isNullOrUndefined,
     QrDimensions,
-    QrDimensionFunction
+    QrDimensionFunction,
+    OpenCvConfig
 } from "./core";
 import { Html5QrcodeStrings } from "./strings";
 import { VideoConstraintsUtil } from "./utils";
@@ -116,6 +117,11 @@ export interface Html5QrcodeFullConfig extends Html5QrcodeConfigs {
      * If true, all logs would be printed to console. False by default.
      */
     verbose: boolean | undefined;
+
+    /**
+     * 
+     */
+    opencv?: OpenCvConfig
 }
 
 /**
@@ -316,6 +322,7 @@ export class Html5Qrcode {
 
         this.elementId = elementId;
         this.verbose = false;
+        let openCvConfig: OpenCvConfig | undefined;
         
         let experimentalFeatureConfig : ExperimentalFeaturesConfig | undefined;
         let configObject: Html5QrcodeFullConfig | undefined;
@@ -325,6 +332,7 @@ export class Html5Qrcode {
             configObject = configOrVerbosityFlag;
             this.verbose = configObject.verbose === true;
             experimentalFeatureConfig = configObject.experimentalFeatures;
+            openCvConfig = configObject.opencv;
         }
         
         this.logger = new BaseLoggger(this.verbose);
@@ -332,7 +340,9 @@ export class Html5Qrcode {
             this.getSupportedFormats(configOrVerbosityFlag),
             this.getUseBarCodeDetectorIfSupported(configObject),
             this.verbose,
-            this.logger);
+            this.logger,
+            openCvConfig
+        );
 
         this.foreverScanTimeout;
         this.shouldScan = true;

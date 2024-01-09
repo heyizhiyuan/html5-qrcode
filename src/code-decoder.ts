@@ -14,10 +14,12 @@ import {
     Logger,
     QrcodeDecoderAsync,
     RobustQrcodeDecoderAsync,
+    OpenCvConfig,
 } from "./core";
 
 import { ZXingHtml5QrcodeDecoder } from "./zxing-html5-qrcode-decoder";
 import { BarcodeDetectorDelegate } from "./native-bar-code-detector";
+import { OpenCvHtml5QrcodeDecoder } from "./opencv-html5-qrcode-decoder";
 
 /**
  * Shim layer for {@interface QrcodeDecoder}.
@@ -39,11 +41,21 @@ export class Html5QrcodeShim implements RobustQrcodeDecoderAsync {
         requestedFormats: Array<Html5QrcodeSupportedFormats>,
         useBarCodeDetectorIfSupported: boolean,
         verbose: boolean,
-        logger: Logger) {
+        logger: Logger,
+        openCvConfig: OpenCvConfig | undefined) {
         this.verbose = verbose;
 
+        if(openCvConfig?.modelAddr){
+            OpenCvHtml5QrcodeDecoder.init(openCvConfig);
+            this.primaryDecoder = new OpenCvHtml5QrcodeDecoder(requestedFormats, verbose, logger);
+            // If 'OpenCvHtml5QrcodeDecoder' is supported, the library will alternate
+            // between 'opencv.js' and 'zxing-js' to compensate for
+            // quality gaps between the two.
+            this.secondaryDecoder = new ZXingHtml5QrcodeDecoder(
+                requestedFormats, verbose, logger);
+        }
         // Use BarcodeDetector library if enabled by config and is supported.
-        if (useBarCodeDetectorIfSupported
+        else if (useBarCodeDetectorIfSupported
                 && BarcodeDetectorDelegate.isSupported()) {
             this.primaryDecoder = new BarcodeDetectorDelegate(
                 requestedFormats, verbose, logger);
